@@ -3,40 +3,746 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الاحترافي</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Tulip Stone | Premium Marble & Granite</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper CSS (For Premium Slider) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <!-- AOS CSS (For Premium Animations) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <style>
+        /* --- PREMIUM CSS STYLES --- */
+        :root {
+            --primary-gold: #c5a880;
+            --dark-gold: #9e815a;
+            --rich-black: #0b0b0b;
+            --slate-black: #121212;
+            --pure-white: #ffffff;
+            --gray-text: #b3b3b3;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--rich-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .nav-links a, .gold-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gold-text { color: var(--primary-gold); }
+        .btn-gold {
+            background: var(--primary-gold);
+            color: var(--rich-black);
+            padding: 12px 28px;
+            border: 1px solid var(--primary-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            box-shadow: 0 0 15px rgba(197, 168, 128, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--pure-white);
+            padding: 12px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        /* Header & Navbar */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(11,11,11,0.8), transparent);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+        .logo img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Slider Section */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 650px;
+            padding-left: 5%;
+        }
+        .hero-content span {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin: 15px 0 25px 0;
+            font-weight: 400;
+        }
+        .hero-content p {
+            color: var(--gray-text);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Swiper Custom Navigation */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary-gold) !important;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary-gold) !important;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--slate-black);
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100fr);
+            gap: 30px;
+        }
+        .feature-box {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(197, 168, 128, 0.15);
+        }
+        .feature-box:last-child { border-right: none; }
+        .feature-box i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+        .feature-box h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .feature-box p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: url('https://i.ibb.co/b689f118-ed3c-4008-ae13-b5680f72338e/dark-marble-bg.jpg') center/cover;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+        .about-content span {
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .about-content h2 {
+            font-size: 3rem;
+            margin: 10px 0 25px 0;
+            font-weight: 400;
+        }
+        .about-content p {
+            color: var(--gray-text);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* Products Categories Section */
+        .products-section {
+            padding: 80px 0;
+            background: var(--rich-black);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .prod-category {
+            background: var(--slate-black);
+            border: 1px solid rgba(197, 168, 128, 0.1);
+            display: flex;
+            align-items: center;
+            height: 280px;
+            transition: var(--transition);
+        }
+        .prod-category:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+        .prod-details {
+            padding: 40px;
+            width: 50%;
+        }
+        .prod-details h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .prod-details p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .prod-img {
+            width: 50%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Stats & Services Combined Section */
+        .services-stats-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
+            border-top: 1px solid rgba(197, 168, 128, 0.15);
+        }
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+        }
+        .services-area h2, .stats-area h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+            padding-bottom: 15px;
+        }
+        .services-list-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(18, 18, 18, 0.6);
+            padding: 15px;
+            border-left: 3px solid var(--primary-gold);
+        }
+        .service-item i {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .stat-box {
+            text-align: center;
+            background: rgba(18, 18, 18, 0.4);
+            padding: 25px 15px;
+            border: 1px solid rgba(197, 168, 128, 0.1);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 80px 0;
+            background: var(--rich-black);
+        }
+        .projects-section h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+        .projects-gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 168, 128, 0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Footer Section */
+        footer {
+            background: var(--slate-black);
+            padding: 80px 0 30px 0;
+            border-top: 1px solid rgba(197, 168, 128, 0.2);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-about .footer-logo {
+            color: var(--primary-gold);
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .footer-about p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .social-icons a {
+            color: var(--gray-text);
+            margin-right: 15px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        .social-icons a:hover { color: var(--primary-gold); }
+        
+        .footer-links h4, .footer-contact h4 {
+            color: var(--primary-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 12px; }
+        .footer-links ul li a {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .footer-links ul li a:hover { color: var(--pure-white); padding-left: 5px; }
+
+        .footer-contact p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-contact i { color: var(--primary-gold); }
+
+        .footer-form h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .footer-form p {
+            color: var(--gray-text);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 30px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design Rules */
+        @media (max-width: 1024px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .features-box { border-right: none; border-bottom: 1px solid rgba(197, 168, 128, 0.15); }
+            .about-grid, .products-grid, .split-grid, .footer-grid { grid-template-columns: 1fr; }
+            .projects-gallery { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* للحفاظ على بساطة الكود بدون مشاكل الهمبرجر */
+            .hero-content h1 { font-size: 2.8rem; }
+            .projects-gallery { grid-template-columns: repeat(2, 1fr); }
+            .prod-category { flex-direction: column; height: auto; }
+            .prod-details, .prod-img { width: 100%; height: 200px; }
+        }
+    </style>
 </head>
-<body class="bg-light text-dark">
+<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">لوجو الموقع</a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link active" href="#">الرئيسية</a>
-                <a class="nav-link" href="#services">خدماتنا</a>
-                <a class="nav-link" href="#contact">اتصل بنا</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="text-center py-5 bg-white shadow-sm">
-        <div class="container py-5">
-            <h1 class="display-4 fw-bold">مرحباً بك في موقعي الجديد</h1>
-            <p class="lead text-muted">نحن نبني حلولاً رقمية مبتكرة، سلسة، واحترافية بالكامل.</p>
-            <a href="#contact" class="btn btn-primary btn-lg mt-3">ابدأ معنا الآن</a>
+    <!-- Header / Nav -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-gem"></i> TULIP STONE
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Marble</a></li>
+                <li><a href="#">Granite</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <a href="#" class="btn-outline" style="padding: 8px 20px; font-size: 0.75rem;">Get A Quote</a>
         </div>
     </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>>
-</head>
-<body>
-    
+    <!-- Slider Section -->
+    <section class="hero-section">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80');">
+                    <div class="hero-content">
+                        <span>Leading Company In</span>
+                        <h1>Marble & Granite <br><span class="gold-text">Trade</span></h1>
+                        <p>Specialized in local supply and international export with absolute precision and premium Egyptian quality standards.</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-gold">Discover More</a>
+                            <a href="#" class="btn-outline">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=80');">
+                    <div class="hero-content">
+                        <span>Luxury Spaces</span>
+                        <h1>Timeless Elegance <br><span class="gold-text">& Design</span></h1>
+                        <p>We provide structural materials that combine aesthetic nature with durability designed to last lifetimes.</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn-gold">Our Products</a>
+                            <a href="#" class="btn-outline">View Gallery</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination/Nav -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container features-grid">
+            <div class="feature-box" data-aos="fade-up">
+                <i class="fa-regular fa-gem"></i>
+                <h3>Premium Quality</h3>
+                <p>We provide the highest quality marble & granite selected carefully.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-earth-americas"></i>
+                <h3>Global Export</h3>
+                <p>Exporting our products worldwide with reliability and trust.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-handshake"></i>
+                <h3>Trust & Reliability</h3>
+                <p>We build lasting relationships through honesty and quality.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>On Time Delivery</h3>
+                <p>Committed to delivering your orders on time every time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container about-grid">
+            <div class="about-img" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80" alt="Quarry">
+            </div>
+            <div class="about-content" data-aos="fade-left">
+                <span>About Us</span>
+                <h2>Tulip Stone</h2>
+                <p>Tulip Stone is a leading company in marble and granite trade, providing high-quality natural stones sourced from the finest quarries. We specialize in local supply and international export, delivering excellence to every project.</p>
+                <a href="#" class="btn-outline">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Split Categories -->
+    <section class="products-section">
+        <div class="container products-grid">
+            <!-- Marble Box -->
+            <div class="prod-category" data-aos="zoom-in-up">
+                <div class="prod-details">
+                    <h2 class="gold-text">Marble</h2>
+                    <p>Our marbles are timeless masterpieces that add elegance and luxury to any space.</p>
+                    <a href="#" class="btn-outline" style="padding: 8px 18px; font-size: 0.75rem;">Explore Marble</a>
+                </div>
+                <div class="prod-img" style="background-image: url('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=500&q=80');"></div>
+            </div>
+            <!-- Granite Box -->
+            <div class="prod-category" data-aos="zoom-in-up" data-aos-delay="100">
+                <div class="prod-details">
+                    <h2 class="gold-text">Granite</h2>
+                    <p>Our granites are strong, durable and perfect for a wide range of applications indoors and outdoors.</p>
+                    <a href="#" class="btn-outline" style="padding: 8px 18px; font-size: 0.75rem;">Explore Granite</a>
+                </div>
+                <div class="prod-img" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=80');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Stats combined -->
+    <section class="services-stats-section">
+        <div class="container split-grid">
+            <!-- Left Side Services -->
+            <div class="services-area" data-aos="fade-right">
+                <h2>Our Services</h2>
+                <div class="services-list-grid">
+                    <div class="service-item"><i class="fa-solid fa-cube"></i> Block Supply</div>
+                    <div class="service-item"><i class="fa-solid fa-layer-group"></i> Slab Supply</div>
+                    <div class="service-item"><i class="fa-solid fa-scissors"></i> Cut to Size</div>
+                    <div class="service-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polishing</div>
+                    <div class="service-item"><i class="fa-solid fa-compass-drafting"></i> Custom Finishes</div>
+                    <div class="service-item"><i class="fa-solid fa-boxes-packing"></i> Packing & Loading</div>
+                </div>
+            </div>
+            <!-- Right Side Counters -->
+            <div class="stats-area" data-aos="fade-left">
+                <h2>Our Achievements</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Countries Exported</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Guaranteed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <div class="projects-gallery" data-aos="fade-up">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=400&q=80" alt="Proj1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=400&q=80" alt="Proj2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80" alt="Proj3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=400&q=80" alt="Proj4"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80" alt="Proj5"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <span class="footer-logo"><i class="fa-solid fa-gem"></i> TULIP STONE</span>
+                <p>Leading company in Marble & Granite trade, specialized in local supply and international export.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Marble</a></li>
+                    <li><a href="#">Granite</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fa-solid fa-envelope"></i> info@tulipstone.com</p>
+                <p><i class="fa-solid fa-phone"></i> +20 100 123 4567</p>
+                <p><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</p>
+            </div>
+            <div class="footer-form">
+                <h4>Get in Touch</h4>
+                <p>We are ready to provide the best solutions for your projects.</p>
+                <button class="btn-gold" style="width: 100%;">Send Message</button>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Tulip Stone. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts (Swiper + AOS + Initialization) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize Animations (AOS)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Premium Slider (Swiper)
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 </body>
 </html>
