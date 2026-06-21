@@ -106,15 +106,19 @@
             padding: 20px 0;
         }
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--primary-gold);
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-        }
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+
+    color: var(--primary-gold); 
+    font-family: 'Playfair Display', serif;
+    font-style: italic; 
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
         .logo img {
             height: 45px;
         }
@@ -233,8 +237,8 @@
         /* About Section */
         .about-section {
             padding: 100px 0;
-            background: url('https://i.ibb.co/b689f118-ed3c-4008-ae13-b5680f72338e/dark-marble-bg.jpg') center/cover;
-        }
+    background: var(--rich-black); 
+}
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -506,8 +510,9 @@
     <!-- Header / Nav -->
     <header>
         <div class="container navbar">
-           <a href="#" class="logo">
-    <img src="images/logo.png" alt="Tulip Stone Logo" style="height: 50px; width: auto;">
+          <a href="#" class="logo">
+    <img src="images/logo.png" alt="Tulip Stone Logo" style="height: 75px; width: auto;">
+    <span style="color: var(--primary-gold);">Tulip Stone</span>
 </a>
             <ul class="nav-links">
                 <li><a href="#" class="active">Home</a></li>
@@ -527,8 +532,7 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80');">
-                    <div class="hero-content">
+<div class="swiper-slide" style="background-image: url('images/hero1.jpg');">                    <div class="hero-content">
                         <span>Leading Company In</span>
                         <h1>Marble & Granite <br><span class="gold-text">Trade</span></h1>
                         <p>Specialized in local supply and international export with absolute precision and premium Egyptian quality standards.</p>
@@ -539,8 +543,7 @@
                     </div>
                 </div>
                 <!-- Slide 2 -->
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=80');">
-                    <div class="hero-content">
+<div class="swiper-slide" style="background-image: url('images/hero2.jpg');">                    <div class="hero-content">
                         <span>Luxury Spaces</span>
                         <h1>Timeless Elegance <br><span class="gold-text">& Design</span></h1>
                         <p>We provide structural materials that combine aesthetic nature with durability designed to last lifetimes.</p>
@@ -588,8 +591,7 @@
     <section class="about-section" id="about">
         <div class="container about-grid">
             <div class="about-img" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80" alt="Quarry">
-            </div>
+<img src="images/about.png" alt="Tulip Stone Quarry">            </div>
             <div class="about-content" data-aos="fade-left">
                 <span>About Us</span>
                 <h2>Tulip Stone</h2>
