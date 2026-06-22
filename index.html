@@ -21,7 +21,7 @@
         :root {
             --primary-gold: #c5a880;
             --dark-gold: #9e815a;
-            --rich-black: #0b0b;
+            --rich-black: #0b0b0b;
             --slate-black: #121212;
             --pure-white: #ffffff;
             --gray-text: #b3b3b3;
@@ -76,7 +76,7 @@
             background: transparent;
             color: var(--pure-white);
             padding: 12px 28px;
-            border: 1px solid rgba(255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
@@ -294,10 +294,22 @@
             font-family: 'Playfair Display', serif;
         }
        .products-items-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 1024px) {
+   .products-items-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+   .products-items-grid { 
+        grid-template-columns: 1fr; 
+    }
+}
        .product-card {
             background: var(--rich-black);
             border: 1px solid rgba(197, 168, 128, 0.1);
@@ -332,14 +344,21 @@
         /* Services & Stats combined */
        .services-stats-section {
             padding: 100px 0;
-            background: linear-gradient(rgba(11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
+            background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
             border-top: 1px solid rgba(197, 168, 128, 0.15);
         }
        .split-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
-        }
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+}
+
+@media (max-width: 1024px) {
+   .split-grid { 
+        grid-template-columns: 1fr; 
+        gap: 60px;
+    }
+}
        .services-area h2,.stats-area h2 {
             font-size: 1.8rem;
             text-transform: uppercase;
@@ -357,7 +376,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(18, 18, 0.6);
+            background: rgba(18, 18, 18, 0.6);
             padding: 15px;
             border-left: 3px solid var(--primary-gold);
         }
@@ -736,7 +755,6 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Bush Hammered', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
-                </div>
                 <!-- Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/halayeb.jpg');"></div>
@@ -777,6 +795,7 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Flamed/Sandblasted', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- New Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/new-halayeb.jpg');"></div>
@@ -819,8 +838,14 @@
                         <p>Custom cut stair treads with anti-slip finishing options. All standard and custom sizes available</p>
                     </div>
                 </div>
-                <!-- Floor Tiles               <p>Precision cut tiles for flooring. Common sizes: 30x30, 40x40, 60x60, 60x120 cm</p>
+                <!-- Floor Tiles -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card-body" style="text-align: center;">
+                        <i class="fas fa-th gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Floor Tiles</h3>
+                        <p>Precision cut tiles for flooring. Common sizes: 30x30, 40x40, 60x60, 60x120 cm</p>
                     </div>
+                </div>
                 <!-- Custom Sizes -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-card-body" style="text-align: center;">
@@ -847,7 +872,182 @@
                     <div class="service-item"><i class="fa-solid fa-compass-drafting"></i> Custom Finishes</div>
                     <div class="service-item"><i class="fa-solid fa-boxes-packing"></i> Packing & Loading</div>
                 </div>
+            <!-- Right Side Counters -->
+            <div class="stats-area" data-aos="fade-left">
+                <h2>Our Achievements</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Countries Exported</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Guaranteed</div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <div class="projects-gallery" data-aos="fade-up">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=400&q=80" alt="Proj1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=400&q=80" alt="Proj2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80" alt="Proj3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=400&q=80" alt="Proj4"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80" alt="Proj5"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <span class="footer-logo"><i class="fa-solid fa-gem"></i> TULIP STONE</span>
+                <p>Leading company in Marble & Granite trade, specialized in local supply and international export.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#marble">Marble</a></li>
+                    <li><a href="#granite">Granite</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fa-solid fa-envelope"></i> info@tulipstone.com</p>
+                <p><i class="fa-solid fa-phone"></i> +20 100 009 6945</p>
+                <p><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</p>
+            </div>
+            <div class="footer-form">
+                <h4>Get in Touch</h4>
+                <p>We are ready to provide the best solutions for your projects.</p>
+                <button class="btn-gold" style="width: 100%;">Send Message</button>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Tulip Stone. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div x-show="modalOpen" x-cloak>
+        <div class="modal-backdrop" @click="modalOpen = false"></div>
+        <div class="modal-content" @click.away="modalOpen = false">
+            <button @click="modalOpen = false" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--gray-text); font-size: 1.5rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            <img :src="modalContent.image" :alt="modalContent.name" style="width: 100%; height: 250px; object-fit: cover; margin-bottom: 20px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-gold); margin-bottom: 15px;" x-text="modalContent.name"></h3>
+            <p style="color: var(--gray-text); line-height: 1.7; margin-bottom: 25px;" x-text="modalContent.desc"></p>
+            <div style="border-top: 1px solid rgba(197, 168, 128, 0.2); padding-top: 20px;">
+                <h4 style="color: var(--primary-gold); margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Specifications:</h4>
+                <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <template x-for="spec in modalContent.specs">
+                        <li style="color: var(--gray-text); font-size: 0.85rem;"><i class="fas fa-check gold-text" style="margin-right: 8px;"></i><span x-text="spec"></span></li>
+                    </template>
+                </ul>
+            </div>
+            <button @click="modalOpen = false" class="btn-gold" style="width: 100%; margin-top: 25px;">Close</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Premium Slider
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            speed: 1000,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>40x40, 60x60, 60x120 cm</p>
+                    </div>
+                </div>
+                <!-- Custom Sizes -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card-body" style="text-align: center;">
+                        <i class="fas fa-ruler-combined gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Custom Sizes</h3>
+                        <p>Any size and shape to fit your project needs. CNC cutting and waterjet available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Stats combined -->
+    <section class="services-stats-section" id="services">
+        <div class="container split-grid">
+            <!-- Left Side Services -->
+            <div class="services-area" data-aos="fade-right">
+                <h2>Our Services</h2>
+                <div class="services-list-grid">
+                    <div class="service-item"><i class="fa-solid fa-cube"></i> Block Supply</div>
+                    <div class="service-item"><i class="fa-solid fa-layer-group"></i> Slab Supply</div>
+                    <div class="service-item"><i class="fa-solid fa-scissors"></i> Cut to Size</div>
+                    <div class="service-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polishing</div>
+                    <div class="service-item"><i class="fa-solid fa-compass-drafting"></i> Custom Finishes</div>
+                    <div class="service-item"><i class="fa-solid fa-boxes-packing"></i> Packing & Loading</div>
+                </div>
             <!-- Right Side Counters -->
             <div class="stats-area" data-aos="fade-left">
                 <h2>Our Achievements</h2>
