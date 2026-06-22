@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulip Stone | Premium Marble & Granite</title>
+    <title>Tulip Stone | Marble & Granite</title>
 
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,11 +17,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        /* --- PREMIUM CSS STYLES - YOUR ORIGINAL --- */
+        /* --- PREMIUM CSS STYLES --- */
         :root {
             --primary-gold: #c5a880;
             --dark-gold: #9e815a;
-            --rich-black: #0b0b0b;
+            --rich-black: #0b0b;
             --slate-black: #121212;
             --pure-white: #ffffff;
             --gray-text: #b3b3b3;
@@ -76,7 +76,7 @@
             background: transparent;
             color: var(--pure-white);
             padding: 12px 28px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 0.3);
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
@@ -98,7 +98,7 @@
             left: 0;
             width: 100%;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(11,11,0.95), rgba(11,11,11,0.7));
+            background: linear-gradient(to bottom, rgba(11,11,11,0.95), rgba(11,11,11,0.7));
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(197, 168, 128, 0.15);
         }
@@ -287,9 +287,11 @@
             font-weight: 600;
         }
        .section-title h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 10px 0 0 0;
             font-weight: 400;
+            color: var(--primary-gold);
+            font-family: 'Playfair Display', serif;
         }
        .products-items-grid {
             display: grid;
@@ -330,7 +332,7 @@
         /* Services & Stats combined */
        .services-stats-section {
             padding: 100px 0;
-            background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
+            background: linear-gradient(rgba(11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
             border-top: 1px solid rgba(197, 168, 128, 0.15);
         }
        .split-grid {
@@ -355,7 +357,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(18, 18, 18, 0.6);
+            background: rgba(18, 18, 0.6);
             padding: 15px;
             border-left: 3px solid var(--primary-gold);
         }
@@ -541,6 +543,7 @@
            .products-items-grid { grid-template-columns: 1fr; }
            .hero-buttons { flex-direction: column; }
            .services-list-grid { grid-template-columns: 1fr; }
+           .section-title h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -649,7 +652,7 @@
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <span>Our Collection</span>
-                <h2>Premium <span class="gold-text">Marble</span></h2>
+                <h2>Marble</h2>
             </div>
             <div class="products-items-grid">
                 <!-- Trista -->
@@ -665,6 +668,7 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- Sunny Minya -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/sunny-minya.jpg');"></div>
@@ -678,6 +682,7 @@
                             specs: ['Origin: Minya, Egypt', 'Finish: Polished/Brushed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- Silvia -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/silvia.jpg');"></div>
@@ -701,7 +706,7 @@
         <div class="container">
             <div class="section-title" data-aos="fade-up">
                 <span>Our Collection</span>
-                <h2>Premium <span class="gold-text">Granite</span></h2>
+                <h2>Granite</h2>
             </div>
             <div class="products-items-grid">
                 <!-- Rose Hodi -->
@@ -717,6 +722,7 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Flamed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- Rose Nasr -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/rose-nasr.jpg');"></div>
@@ -730,6 +736,7 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Bush Hammered', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/halayeb.jpg');"></div>
@@ -743,6 +750,7 @@
                             specs: ['Origin: Halayeb, Egypt', 'Finish: Polished/Leather', 'Thickness: 2-3 cm', 'Application: Interior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
+                </div>
                 <!-- Gandola -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/gandola.jpg');"></div>
@@ -756,7 +764,6 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
-                </div>
                 <!-- Grey Company -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/grey-company.jpg');"></div>
@@ -770,7 +777,6 @@
                             specs: ['Origin: Egypt', 'Finish: Polished/Flamed/Sandblasted', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
                     </div>
-                </div>
                 <!-- New Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/new-halayeb.jpg');"></div>
@@ -813,14 +819,8 @@
                         <p>Custom cut stair treads with anti-slip finishing options. All standard and custom sizes available</p>
                     </div>
                 </div>
-                <!-- Floor Tiles -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card-body" style="text-align: center;">
-                        <i class="fas fa-th gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Floor Tiles</h3>
-                        <p>Precision cut tiles for flooring. Common sizes:60x60, 60x120 cm</p>
+                <!-- Floor Tiles               <p>Precision cut tiles for flooring. Common sizes: 30x30, 40x40, 60x60, 60x120 cm</p>
                     </div>
-                </div>
                 <!-- Custom Sizes -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-card-body" style="text-align: center;">
@@ -899,6 +899,7 @@
                     <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
+            </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
