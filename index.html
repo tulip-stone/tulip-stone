@@ -135,13 +135,11 @@
         }
         .logo img { height: 40px; }
         
-        /* التعديل الجديد: تباعد ملموم ومتناسق */
         .nav-links { 
             display: flex; 
             list-style: none; 
             gap: 15px; 
         }
-        /* التعديل الجديد: تصغير الحجم وتنسيق الحروف */
         .nav-links a {
             color: var(--pure-white);
             text-decoration: none;
@@ -578,14 +576,13 @@
                 <h2 x-text="t('nav.tombstone')"></h2>
             </div>
             <div class="products-items-grid">
-                <!-- Dynamically looping 14 Tombstones -->
+                <!-- Loop for 14 Tombstones using correct relative paths -->
                 <template x-for="i in 14">
                     <div class="product-card" data-aos="fade-up">
                         <div class="product-card-img" :style="'background-image: url(\'images/tombstone' + i + '.jpg\');'"></div>
                         <div class="product-card-body">
                             <h3 x-text="t('tombstone_title') + ' ' + i"></h3>
                             <p x-text="t('tombstone_p')"></p>
-                            <!-- فتح النافذة المحدثة بالصورة كاملة الأبعاد + كارت المعلومات -->
                             <button @click="modalOpen = true; modalContent = {
                                 name: t('tombstone_title') + ' ' + i,
                                 image: 'images/tombstone' + i + '.jpg',
@@ -722,7 +719,7 @@
                 <p><i class="fa-solid fa-envelope"></i> info@tulipstone.com</p>
                 <p><i class="fa-solid fa-phone"></i> +20 100 009 6945</p>
                 <p>
-                    <a href="https://www.bing.com/maps/search?v=2&pc=FACEBK&mid=8100&mkt=en-US&fbclid=IwY2xjawSoeaFleHRuA2FlbQIxMABicmlkETFIMW1raWlhS0RRM0EwOEJEc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvQqOzbOYvu__FHvmmamC11kh4lVY73DIsF069izHjOCq-PFCqxTV7awALoT_aem_qyE_Ar0KKa5Ry3q5Pa-Tqg&FORM=FBKPL1&q=%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9+%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9+%D8%A8%D8%Bبعرب+%D8%A7%D8%A8%D9%88%D8%B3%D8%A7%D8%B9%D8%AF+%D8%AD%D9%84%D9%88%D8%A7%D9%86+%D8%A8%D8%AC%D9%8ـ%D9%88%D8%A7%D8%B1+%D9%85%D8%AD%D8%B7%D8%A9+%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D9%8A%D8%A1%2C+Helwan%2C+Egypt&cp=29.765915%7E31.346334&lvl=16&style=r" target="_blank">
+                    <a href="https://www.bing.com/maps/search?v=2&pc=FACEBK&mid=8100&mkt=en-US&fbclid=IwY2xjawSoeaFleHRuA2FlbQIxMABicmlkETFIMW1raWlhS0RRM0EwOEJEc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvQqOzbOYvu__FHvmmamC11kh4lVY73DIsF069izHjOCq-PFCqxTV7awALoT_aem_qyE_Ar0KKa5Ry3q5Pa-Tqg&FORM=FBKPL1&q=%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9+%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9+%D8%A8%D8%Bبعرب+%D8%A7%D8%A8%D9%88%D8%B3%D8%A7%D8%B...%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D9%8A%D8%A1%2C+Helwan%2C+Egypt&cp=29.765915%7E31.346334&lvl=16&style=r" target="_blank">
                         <i class="fa-solid fa-location-dot"></i> <span x-text="t('footer.address')"></span>
                     </a>
                 </p>
@@ -730,7 +727,8 @@
             <div class="footer-grid-form">
                 <h4 x-text="t('footer.get_in_touch')"></h4>
                 <p x-text="t('footer.ready')"></p>
-                <a href="mailto:customerservice@tulip-stone.com" class="btn-gold" style="width: 100%;" x-text="t('footer.send_msg')"></a>
+                <!-- التعديل المحدث لفتح جيميل مباشرة وحل مشكلة المتصفحات الافتراضية -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=customerservice@tulip-stone.com" target="_blank" class="btn-gold" style="width: 100%;" x-text="t('footer.send_msg')"></a>
             </div>
         </div>
         <div class="copyright">
@@ -746,12 +744,10 @@
                 <i class="fas fa-times"></i>
             </button>
             
-            <!-- لو كان الحساب لـ Tombstone، هيعرض الصورة بأبعادها الطبيعية بدون قص -->
             <div class="modal-img-container" :class="modalContent.isTombstone ? 'tombstone-mode' : 'standard-mode'">
                 <img :src="modalContent.image" :alt="modalContent.name">
             </div>
 
-            <!-- كارت التفاصيل الفاخر بالأسفل -->
             <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-gold); margin-bottom: 15px;" x-text="modalContent.name"></h3>
             <p style="color: var(--gray-text); line-height: 1.7; margin-bottom: 25px; font-size: 0.95rem;" x-text="modalContent.desc"></p>
             
