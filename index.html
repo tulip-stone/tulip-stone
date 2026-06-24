@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tulip Stone | Marble & Granite</title>
 
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -310,7 +306,6 @@
 </head>
 <body x-data="{ modalOpen: false, modalContent: {} }">
 
-    <!-- Header / Nav -->
     <header>
         <div class="container navbar">
             <a href="#home" class="logo">
@@ -335,7 +330,6 @@
         </div>
     </header>
 
-    <!-- Slider Section -->
     <section class="hero-section" id="home">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -368,7 +362,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features-section">
         <div class="container features-grid">
             <div class="feature-box" data-aos="fade-up">
@@ -394,7 +387,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container about-grid">
             <div class="about-img" data-aos="fade-right">
@@ -409,7 +401,6 @@
         </div>
     </section>
 
-    <!-- Marble Products Section -->
     <section class="product-items-section" id="marble">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -417,7 +408,6 @@
                 <h2 x-text="t('nav.marble')"></h2>
             </div>
             <div class="products-items-grid">
-                <!-- Trista -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/trista.jpg');"></div>
                     <div class="product-card-body">
@@ -432,7 +422,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Sunny Minya -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/sunny-minya.jpg');"></div>
                     <div class="product-card-body">
@@ -447,7 +436,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Silvia -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/silvia.jpg');"></div>
                     <div class="product-card-body">
@@ -466,7 +454,6 @@
         </div>
     </section>
 
-    <!-- Granite Products Section -->
     <section class="product-items-section" id="granite" style="background: var(--rich-black);">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -474,7 +461,6 @@
                 <h2 x-text="t('nav.granite')"></h2>
             </div>
             <div class="products-items-grid">
-                <!-- Rose Hodi -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/rose-hodi.jpg');"></div>
                     <div class="product-card-body">
@@ -489,7 +475,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Rose Nasr -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/rose-nasr.jpg');"></div>
                     <div class="product-card-body">
@@ -504,7 +489,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/halayeb.jpg');"></div>
                     <div class="product-card-body">
@@ -519,7 +503,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Gandola -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/gandola.jpg');"></div>
                     <div class="product-card-body">
@@ -534,7 +517,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- Grey Company -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/grey-company.jpg');"></div>
                     <div class="product-card-body">
@@ -549,7 +531,6 @@
                         }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
-                <!-- New Halayeb -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/new-halayeb.jpg');"></div>
                     <div class="product-card-body">
@@ -568,7 +549,6 @@
         </div>
     </section>
 
-    <!-- Tombstone Section -->
     <section class="product-items-section" id="tombstone" style="background: var(--slate-black);">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
@@ -576,7 +556,6 @@
                 <h2 x-text="t('nav.tombstone')"></h2>
             </div>
             <div class="products-items-grid">
-                <!-- Loop for 14 Tombstones using correct relative paths -->
                 <template x-for="i in 14">
                     <div class="product-card" data-aos="fade-up">
                         <div class="product-card-img" :style="'background-image: url(\'images/tombstone' + i + '.jpg\');'"></div>
@@ -597,34 +576,41 @@
         </div>
     </section>
 
-    <!-- Sizes Section -->
-    <section class="product-items-section" id="tombstone" style="background: var(--slate-black);">
+    <section class="product-items-section" id="sizes" style="background: var(--rich-black);">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <span x-text="t('collection')"></span>
-                <h2 x-text="t('nav.tombstone')"></h2>
+                <span x-text="t('sizes.span')"></span>
+                <h2 x-html="t('sizes.h2')"></h2>
             </div>
-            <div class="products-items-grid">
-                <template x-for="i in 14">
-                    <div class="product-card" data-aos="fade-up">
-                        <div class="product-card-img" :style="'background-image: url(\'images/tombstone' + i + '.jpg\');'"></div>
-                        <div class="product-card-body">
-                            <h3 x-text="t('tombstone_title') + ' ' + i"></h3>
-                            <p x-text="t('tombstone_p')"></p>
-                            <button @click="modalOpen = true; modalContent = {
-                                name: t('tombstone_title') + ' ' + i,
-                                image: 'images/tombstone' + i + '.jpg',
-                                isTombstone: true,
-                                desc: t('tombstone_modal_desc'),
-                                specs: [t('tombstone_spec1'), t('tombstone_spec2'), t('tombstone_spec3'), t('tombstone_spec4')]
-                            }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
-                        </div>
+            <div class="sizes-items-grid">
+                <div class="product-card" data-aos="fade-up">
+                    <div class="product-card-body">
+                        <h3 style="color: var(--primary-gold); margin-bottom: 10px;" x-text="t('sizes.slabs.title')"></h3>
+                        <p style="color: var(--gray-text); font-size: 0.85rem; line-height: 1.6;" x-text="t('sizes.slabs.p')"></p>
                     </div>
-                </template>
+                </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card-body">
+                        <h3 style="color: var(--primary-gold); margin-bottom: 10px;" x-text="t('sizes.stairs.title')"></h3>
+                        <p style="color: var(--gray-text); font-size: 0.85rem; line-height: 1.6;" x-text="t('sizes.stairs.p')"></p>
+                    </div>
+                </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card-body">
+                        <h3 style="color: var(--primary-gold); margin-bottom: 10px;" x-text="t('sizes.tiles.title')"></h3>
+                        <p style="color: var(--gray-text); font-size: 0.85rem; line-height: 1.6;" x-text="t('sizes.tiles.p')"></p>
+                    </div>
+                </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card-body">
+                        <h3 style="color: var(--primary-gold); margin-bottom: 10px;" x-text="t('sizes.custom.title')"></h3>
+                        <p style="color: var(--gray-text); font-size: 0.85rem; line-height: 1.6;" x-text="t('sizes.custom.p')"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Services & Stats -->
+
     <section class="services-stats-section" id="services">
         <div class="container split-grid">
             <div class="services-area" data-aos="fade-right">
@@ -662,7 +648,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="projects-section" id="projects">
         <div class="container">
             <h2 x-text="t('nav.projects')"></h2>
@@ -676,7 +661,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
         <div class="container footer-grid">
             <div class="footer-about">
@@ -714,7 +698,6 @@
             <div class="footer-grid-form">
                 <h4 x-text="t('footer.get_in_touch')"></h4>
                 <p x-text="t('footer.ready')"></p>
-                <!-- التعديل المحدث لفتح جيميل مباشرة وحل مشكلة المتصفحات الافتراضية -->
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=customerservice@tulip-stone.com" target="_blank" class="btn-gold" style="width: 100%;" x-text="t('footer.send_msg')"></a>
             </div>
         </div>
@@ -723,7 +706,6 @@
         </div>
     </footer>
 
-    <!-- DYNAMIC UNIFIED MODAL (Marble, Granite, and Tombstone) -->
     <div x-show="modalOpen" x-cloak>
         <div class="modal-backdrop" @click="modalOpen = false"></div>
         <div class="modal-content" @click.away="modalOpen = false">
@@ -753,7 +735,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
