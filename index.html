@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="multiLang" :lang="lang" :dir="lang === 'ar' ? 'rtl' : 'ltr'">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-    <!-- Alpine.js for Modal -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -46,13 +46,13 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Utility Classes */
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
         .gold-text { color: var(--primary-gold); }
+        
         .btn-gold {
             background: var(--primary-gold);
             color: var(--rich-black);
@@ -66,12 +66,14 @@
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
         .btn-gold:hover {
             background: transparent;
             color: var(--primary-gold);
             box-shadow: 0 0 15px rgba(197, 168, 128, 0.4);
         }
+        
         .btn-outline {
             background: transparent;
             color: var(--pure-white);
@@ -91,12 +93,25 @@
             color: var(--primary-gold);
         }
 
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 6px 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+        .lang-btn:hover {
+            background: var(--primary-gold);
+            color: var(--rich-black);
+        }
+
         /* Header & Navbar */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; width: 100%;
             z-index: 100;
             background: linear-gradient(to bottom, rgba(11,11,11,0.95), rgba(11,11,11,0.7));
             backdrop-filter: blur(10px);
@@ -118,37 +133,28 @@
             font-weight: bold;
             letter-spacing: 1.5px;
         }
-        .logo img {
-            height: 40px;
+        .logo img { height: 40px; }
+        
+        /* التعديل الجديد: تباعد ملموم ومتناسق */
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 15px; 
         }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+        /* التعديل الجديد: تصغير الحجم وتنسيق الحروف */
         .nav-links a {
             color: var(--pure-white);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             transition: var(--transition);
         }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-gold);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-gold); }
 
         /* Hero Slider Section */
-        .hero-section {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            padding-top: 85px;
-        }
-        .swiper {
-            width: 100%;
-            height: 100%;
-        }
+        .hero-section { width: 100%; height: 100vh; position: relative; padding-top: 85px; }
+        .swiper { width: 100%; height: 100%; }
         .swiper-slide {
             position: relative;
             background-size: cover;
@@ -162,12 +168,10 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.65);
         }
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 650px;
-            padding-left: 5%;
-        }
+        .hero-content { position: relative; z-index: 10; max-width: 650px; }
+        html[dir="ltr"] .hero-content { padding-left: 5%; }
+        html[dir="rtl"] .hero-content { padding-right: 5%; }
+
         .hero-content span {
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -175,388 +179,131 @@
             color: var(--primary-gold);
             font-weight: 600;
         }
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin: 15px 0 25px 0;
-            font-weight: 400;
-        }
-        .hero-content p {
-            color: var(--gray-text);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 35px;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
+        .hero-content h1 { font-size: 4rem; line-height: 1.1; margin: 15px 0 25px 0; font-weight: 400; }
+        .hero-content p { color: var(--gray-text); font-size: 1.05rem; line-height: 1.6; margin-bottom: 35px; }
+        .hero-buttons { display: flex; gap: 20px; }
 
-        /* Swiper Custom Navigation */
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--primary-gold) !important;
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--primary-gold) !important;
-        }
+        .swiper-button-next, .swiper-button-prev { color: var(--primary-gold) !important; }
+        .swiper-pagination-bullet-active { background: var(--primary-gold) !important; }
 
         /* Features Section */
-        .features-section {
-            background: var(--slate-black);
-            padding: 60px 0;
-            border-bottom: 1px solid rgba(197, 168, 128, 0.1);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .feature-box {
-            text-align: center;
-            padding: 20px;
-            border-right: 1px solid rgba(197, 168, 128, 0.15);
-        }
-        .feature-box:last-child { border-right: none; }
-        .feature-box i {
-            font-size: 2rem;
-            color: var(--primary-gold);
-            margin-bottom: 15px;
-        }
-        .feature-box h3 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        .feature-box p {
-            color: var(--gray-text);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
+        .features-section { background: var(--slate-black); padding: 60px 0; border-bottom: 1px solid rgba(197, 168, 128, 0.1); }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .feature-box { text-align: center; padding: 20px; border-right: 1px solid rgba(197, 168, 128, 0.15); }
+        html[dir="rtl"] .feature-box { border-right: none; border-left: 1px solid rgba(197, 168, 128, 0.15); }
+        .feature-box:last-child { border-right: none; border-left: none; }
+        .feature-box i { font-size: 2rem; color: var(--primary-gold); margin-bottom: 15px; }
+        .feature-box h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .feature-box p { color: var(--gray-text); font-size: 0.85rem; line-height: 1.5; }
 
         /* About Section */
-        .about-section {
-            padding: 100px 0;
-            background: var(--rich-black);
-        }
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .about-img img {
-            width: 100%;
-            height: auto;
-            border: 1px solid var(--primary-gold);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-        }
-        .about-content span {
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .about-content h2 {
-            font-size: 3rem;
-            margin: 10px 0 25px 0;
-            font-weight: 400;
-        }
-        .about-content p {
-            color: var(--gray-text);
-            line-height: 1.7;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
+        .about-section { padding: 100px 0; background: var(--rich-black); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-img img { width: 100%; height: auto; border: 1px solid var(--primary-gold); box-shadow: 0 15px 35px rgba(0,0,0,0.7); }
+        .about-content span { color: var(--primary-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: 600; }
+        .about-content h2 { font-size: 3rem; margin: 10px 0 25px 0; font-weight: 400; }
+        .about-content p { color: var(--gray-text); line-height: 1.7; margin-bottom: 30px; font-size: 0.95rem; }
 
         /* Product Items Section */
-        .product-items-section {
-            padding: 80px 0;
-            background: var(--slate-black);
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title span {
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .section-title h2 {
-            font-size: 3.5rem;
-            margin: 10px 0 0 0;
-            font-weight: 400;
-            color: var(--primary-gold);
-            font-family: 'Playfair Display', serif;
-        }
-        .products-items-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
+        .product-items-section { padding: 80px 0; background: var(--slate-black); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title span { color: var(--primary-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: 600; }
+        .section-title h2 { font-size: 3.5rem; margin: 10px 0 0 0; font-weight: 400; color: var(--primary-gold); }
         
-        /* Sizes Grid - 4 Columns on Desktop */
-        .sizes-items-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
+        .products-items-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .sizes-items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 
-        .product-card {
-            background: var(--rich-black);
-            border: 1px solid rgba(197, 168, 128, 0.1);
-            transition: var(--transition);
-            overflow: hidden;
-        }
-        .product-card:hover {
-            border-color: var(--primary-gold);
-            transform: translateY(-10px);
-        }
-        .product-card-img {
-            width: 100%;
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-        }
-        .product-card-body {
-            padding: 25px;
-        }
-        .product-card-body h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary-gold);
-        }
-        .product-card-body p {
-            color: var(--gray-text);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+        .product-card { background: var(--rich-black); border: 1px solid rgba(197, 168, 128, 0.1); transition: var(--transition); overflow: hidden; }
+        .product-card:hover { border-color: var(--primary-gold); transform: translateY(-10px); }
+        .product-card-img { width: 100%; height: 250px; background-size: cover; background-position: center; }
+        .product-card-body { padding: 25px; }
+        .product-card-body h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-gold); }
+        .product-card-body p { color: var(--gray-text); font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
 
-        /* Services & Stats combined */
+        /* Services & Stats */
         .services-stats-section {
             padding: 100px 0;
             background: linear-gradient(rgba(11,11,11,0.9), rgba(11,11,11,0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
             border-top: 1px solid rgba(197, 168, 128, 0.15);
         }
-        .split-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
-        }
+        .split-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; }
         .services-area h2, .stats-area h2 {
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
-            padding-bottom: 15px;
+            font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2); padding-bottom: 15px;
         }
-        .services-list-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        .service-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(18, 18, 18, 0.6);
-            padding: 15px;
-            border-left: 3px solid var(--primary-gold);
-        }
-        .service-item i {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        .stat-box {
-            text-align: center;
-            background: rgba(18, 18, 18, 0.4);
-            padding: 25px 15px;
-            border: 1px solid rgba(197, 168, 128, 0.1);
-        }
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary-gold);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray-text);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .services-list-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .service-item { display: flex; align-items: center; gap: 15px; background: rgba(18, 18, 18, 0.6); padding: 15px; }
+        html[dir="ltr"] .service-item { border-left: 3px solid var(--primary-gold); }
+        html[dir="rtl"] .service-item { border-right: 3px solid var(--primary-gold); }
+        .service-item i { color: var(--primary-gold); font-size: 1.2rem; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .stat-box { text-align: center; background: rgba(18, 18, 18, 0.4); padding: 25px 15px; border: 1px solid rgba(197, 168, 128, 0.1); }
+        .stat-number { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary-gold); font-weight: bold; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; color: var(--gray-text); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Projects Section */
-        .projects-section {
-            padding: 80px 0;
-            background: var(--rich-black);
-        }
-        .projects-section h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-        }
-        .projects-gallery {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-        }
-        .gallery-item {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-            border: 1px solid rgba(197, 168, 128, 0.1);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        /* Projects Gallery */
+        .projects-section { padding: 80px 0; background: var(--rich-black); }
+        .projects-section h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
+        .projects-gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        .gallery-item { position: relative; height: 250px; overflow: hidden; border: 1px solid rgba(197, 168, 128, 0.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .gallery-item:hover img { transform: scale(1.1); }
 
-        /* Footer Section */
-        footer {
-            background: var(--slate-black);
-            padding: 80px 0 30px 0;
-            border-top: 1px solid rgba(197, 168, 128, 0.2);
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        .footer-about .footer-logo {
-            color: var(--primary-gold);
-            font-size: 1.4rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-about .footer-logo img {
-            height: 1.5rem;
-            width: auto;
-        }
-        .footer-about p {
-            color: var(--gray-text);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .social-icons a {
-            color: var(--gray-text);
-            margin-right: 15px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
+        /* Footer */
+        footer { background: var(--slate-black); padding: 80px 0 30px 0; border-top: 1px solid rgba(197, 168, 128, 0.2); }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr; gap: 40px; margin-bottom: 60px; }
+        .footer-about .footer-logo { color: var(--primary-gold); font-size: 1.4rem; font-family: 'Playfair Display', serif; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .footer-about .footer-logo img { height: 1.5rem; width: auto; }
+        .footer-about p { color: var(--gray-text); font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
+        
+        html[dir="ltr"] .social-icons a { margin-right: 15px; }
+        html[dir="rtl"] .social-icons a { margin-left: 15px; }
+        .social-icons a { color: var(--gray-text); font-size: 1.1rem; transition: var(--transition); }
         .social-icons a:hover { color: var(--primary-gold); }
 
-        .footer-links h4, .footer-contact h4 {
-            color: var(--primary-gold);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-        }
+        .footer-links h4, .footer-contact h4, .footer-form h4 { color: var(--primary-gold); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; }
         .footer-links ul { list-style: none; }
         .footer-links ul li { margin-bottom: 12px; }
-        .footer-links ul li a {
-            color: var(--gray-text);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-        .footer-links ul li a:hover { color: var(--pure-white); padding-left: 5px; }
-
-        .footer-contact p {
-            color: var(--gray-text);
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .footer-links ul li a { color: var(--gray-text); text-decoration: none; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links ul li a:hover { color: var(--pure-white); }
+        .footer-contact p { color: var(--gray-text); font-size: 0.85rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .footer-contact p a { color: var(--gray-text); text-decoration: none; transition: var(--transition); }
+        .footer-contact p a:hover { color: var(--primary-gold); }
         .footer-contact i { color: var(--primary-gold); }
+        .footer-form p { color: var(--gray-text); font-size: 0.85rem; margin-bottom: 20px; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 1px; }
 
-        .footer-form h4 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-        }
-        .footer-form p {
-            color: var(--gray-text);
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-        }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 30px;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        /* Modal Styles */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            z-index: 200;
-        }
+        /* MODAL SYSTEM (Unified for Marble, Granite, and Tombstone) */
+        .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 200; }
         .modal-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--slate-black);
-            border: 1px solid var(--primary-gold);
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            z-index: 201;
-            padding: 30px;
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: var(--slate-black); border: 1px solid var(--primary-gold);
+            max-width: 650px; width: 90%; max-height: 90vh; overflow-y: auto; z-index: 201; padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
+        
+        /* Dynamic Image Sizing for Tombstone (Original Proportion without cropping) */
+        .modal-img-container { width: 100%; display: flex; justify-content: center; align-items: center; background: #000; margin-bottom: 20px; overflow: hidden; }
+        .modal-img-container.tombstone-mode img { max-width: 100%; max-height: 55vh; object-fit: contain; }
+        .modal-img-container.standard-mode img { width: 100%; height: 280px; object-fit: cover; }
+
         [x-cloak] { display: none !important; }
 
-        /* Responsive Design Rules */
+        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .feature-box { border-right: none; border-bottom: 1px solid rgba(197, 168, 128, 0.15); }
+            .feature-box { border-right: none; border-left: none; border-bottom: 1px solid rgba(197, 168, 128, 0.15); }
             .about-grid, .split-grid, .footer-grid { grid-template-columns: 1fr; }
             .projects-gallery { grid-template-columns: repeat(3, 1fr); }
             .products-items-grid { grid-template-columns: repeat(2, 1fr); }
-            .sizes-items-grid { grid-template-columns: repeat(2, 1fr); } /* شاشات التابلت */
+            .sizes-items-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-content h1 { font-size: 2.8rem; }
             .projects-gallery { grid-template-columns: repeat(2, 1fr); }
-            .products-items-grid { grid-template-columns: 1fr; }
-            .sizes-items-grid { grid-template-columns: 1fr; } /* تحت بعض على الموبايل */
+            .products-items-grid, .sizes-items-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; }
             .services-list-grid { grid-template-columns: 1fr; }
             .section-title h2 { font-size: 2.5rem; }
@@ -573,16 +320,20 @@
                 <span>TULIP STONE</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#marble">Marble</a></li>
-                <li><a href="#granite">Granite</a></li>
-                <li><a href="#sizes">Sizes</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="active" x-text="t('nav.home')"></a></li>
+                <li><a href="#about" x-text="t('nav.about')"></a></li>
+                <li><a href="#marble" x-text="t('nav.marble')"></a></li>
+                <li><a href="#granite" x-text="t('nav.granite')"></a></li>
+                <li><a href="#tombstone" x-text="t('nav.tombstone')"></a></li>
+                <li><a href="#sizes" x-text="t('nav.sizes')"></a></li>
+                <li><a href="#services" x-text="t('nav.services')"></a></li>
+                <li><a href="#projects" x-text="t('nav.projects')"></a></li>
+                <li><a href="#contact" x-text="t('nav.contact')"></a></li>
             </ul>
-            <a href="#contact" class="btn-outline" style="padding: 8px 20px; font-size: 0.75rem;">Get A Quote</a>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button class="lang-btn" @click="toggleLang" x-text="lang === 'en' ? 'العربية' : 'English'"></button>
+                <a href="#contact" class="btn-outline" style="padding: 8px 20px; font-size: 0.75rem;" x-text="t('nav.quote')"></a>
+            </div>
         </div>
     </header>
 
@@ -590,32 +341,29 @@
     <section class="hero-section" id="home">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <!-- Slide 1 -->
                 <div class="swiper-slide" style="background-image: url('images/slider-1.jpg');">
                     <div class="hero-content">
-                        <span>Leading Company In</span>
-                        <h1>Marble & Granite <br><span class="gold-text">Trade</span></h1>
-                        <p>Specialized in local supply and international export with absolute precision and premium Egyptian quality standards.</p>
+                        <span x-text="t('hero.slide1.span')"></span>
+                        <h1 x-html="t('hero.slide1.h1')"></h1>
+                        <p x-text="t('hero.slide1.p')"></p>
                         <div class="hero-buttons">
-                            <a href="#marble" class="btn-gold">Discover Marble</a>
-                            <a href="#contact" class="btn-outline">Contact Us</a>
+                            <a href="#marble" class="btn-gold" x-text="t('hero.slide1.btn1')"></a>
+                            <a href="#contact" class="btn-outline" x-text="t('hero.slide1.btn2')"></a>
                         </div>
                     </div>
                 </div>
-                <!-- Slide 2 -->
                 <div class="swiper-slide" style="background-image: url('images/slider-2.jpg');">
                     <div class="hero-content">
-                        <span>Luxury Spaces</span>
-                        <h1>Timeless Elegance <br><span class="gold-text">& Design</span></h1>
-                        <p>We provide structural materials that combine aesthetic nature with durability designed to last lifetimes.</p>
+                        <span x-text="t('hero.slide2.span')"></span>
+                        <h1 x-html="t('hero.slide2.h1')"></h1>
+                        <p x-text="t('hero.slide2.p')"></p>
                         <div class="hero-buttons">
-                            <a href="#granite" class="btn-gold">Our Granite</a>
-                            <a href="#projects" class="btn-outline">View Gallery</a>
+                            <a href="#granite" class="btn-gold" x-text="t('hero.slide2.btn1')"></a>
+                            <a href="#projects" class="btn-outline" x-text="t('hero.slide2.btn2')"></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Pagination/Nav -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
@@ -627,23 +375,23 @@
         <div class="container features-grid">
             <div class="feature-box" data-aos="fade-up">
                 <i class="fa-regular fa-gem"></i>
-                <h3>Premium Quality</h3>
-                <p>We provide the highest quality marble & granite selected carefully.</p>
+                <h3 x-text="t('features.f1.title')"></h3>
+                <p x-text="t('features.f1.desc')"></p>
             </div>
             <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
                 <i class="fa-solid fa-earth-americas"></i>
-                <h3>Global Export</h3>
-                <p>Exporting our products worldwide with reliability and trust.</p>
+                <h3 x-text="t('features.f2.title')"></h3>
+                <p x-text="t('features.f2.desc')"></p>
             </div>
             <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
                 <i class="fa-solid fa-handshake"></i>
-                <h3>Trust & Reliability</h3>
-                <p>We build lasting relationships through honesty and quality.</p>
+                <h3 x-text="t('features.f3.title')"></h3>
+                <p x-text="t('features.f3.desc')"></p>
             </div>
             <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
                 <i class="fa-solid fa-truck-fast"></i>
-                <h3>On Time Delivery</h3>
-                <p>Committed to delivering your orders on time every time.</p>
+                <h3 x-text="t('features.f4.title')"></h3>
+                <p x-text="t('features.f4.desc')"></p>
             </div>
         </div>
     </section>
@@ -655,10 +403,10 @@
                 <img src="images/about.png" alt="Tulip Stone Quarry">
             </div>
             <div class="about-content" data-aos="fade-left">
-                <span>About Us</span>
-                <h2>Tulip Stone</h2>
-                <p>Tulip Stone is a leading company in marble and granite trade, providing high-quality natural stones sourced from the finest quarries. We specialize in local supply and international export, delivering excellence to every project.</p>
-                <a href="#contact" class="btn-outline">Read More</a>
+                <span x-text="t('about.span')"></span>
+                <h2 x-text="t('about.h2')"></h2>
+                <p x-text="t('about.p')"></p>
+                <a href="#contact" class="btn-outline" x-text="t('about.btn')"></a>
             </div>
         </div>
     </section>
@@ -667,50 +415,53 @@
     <section class="product-items-section" id="marble">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <span>Our Collection</span>
-                <h2>Marble</h2>
+                <span x-text="t('collection')"></span>
+                <h2 x-text="t('nav.marble')"></h2>
             </div>
             <div class="products-items-grid">
                 <!-- Trista -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/trista.jpg');"></div>
                     <div class="product-card-body">
-                        <h3>Trista Marble</h3>
-                        <p>Elegant beige marble with subtle golden veins, perfect for luxurious interiors.</p>
+                        <h3 x-text="t('products.trista.title')"></h3>
+                        <p x-text="t('products.trista.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Trista Marble',
+                            name: t('products.trista.title'),
                             image: 'images/trista.jpg',
-                            desc: 'Trista is a premium Egyptian marble characterized by its warm beige base color with delicate golden and light brown veining. Ideal for flooring, wall cladding, countertops, and decorative elements. Its timeless elegance makes it suitable for both classic and modern designs.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.trista.desc'),
+                            specs: t('products.trista.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Sunny Minya -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/sunny-minya.jpg');"></div>
                     <div class="product-card-body">
-                        <h3>Sunny Minya</h3>
-                        <p>Bright cream marble with warm undertones, bringing light to any space.</p>
+                        <h3 x-text="t('products.sunny.title')"></h3>
+                        <p x-text="t('products.sunny.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Sunny Minya Marble',
+                            name: t('products.sunny.title'),
                             image: 'images/sunny-minya.jpg',
-                            desc: 'Sunny Minya is a highly sought-after Egyptian marble featuring a creamy white to light beige background with minimal veining. Its bright appearance and excellent workability make it perfect for large-scale projects, flooring, stairs, and facades.',
-                            specs: ['Origin: Minya, Egypt', 'Finish: Polished/Brushed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.sunny.desc'),
+                            specs: t('products.sunny.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Silvia -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-img" style="background-image: url('images/silvia.jpg');"></div>
                     <div class="product-card-body">
-                        <h3>Silvia Marble</h3>
-                        <p>Sophisticated grey marble with dramatic white veining patterns.</p>
+                        <h3 x-text="t('products.silvia.title')"></h3>
+                        <p x-text="t('products.silvia.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Silvia Marble',
+                            name: t('products.silvia.title'),
                             image: 'images/silvia.jpg',
-                            desc: 'Silvia Marble is a distinguished Egyptian stone with a light to medium grey base and striking white veins running throughout. Its contemporary look makes it ideal for modern interiors, bathroom vanities, kitchen islands, and feature walls.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Leather', 'Thickness: 2-3 cm', 'Application: Interior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.silvia.desc'),
+                            specs: t('products.silvia.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
             </div>
@@ -721,36 +472,38 @@
     <section class="product-items-section" id="granite" style="background: var(--rich-black);">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <span>Our Collection</span>
-                <h2>Granite</h2>
+                <span x-text="t('collection')"></span>
+                <h2 x-text="t('nav.granite')"></h2>
             </div>
             <div class="products-items-grid">
                 <!-- Rose Hodi -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-img" style="background-image: url('images/rose-hodi.jpg');"></div>
                     <div class="product-card-body">
-                        <h3>Rose Hodi</h3>
-                        <p>Pinkish-red granite with black speckles, adding warmth and character.</p>
+                        <h3 x-text="t('products.hodi.title')"></h3>
+                        <p x-text="t('products.hodi.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Rose Hodi Granite',
+                            name: t('products.hodi.title'),
                             image: 'images/rose-hodi.jpg',
-                            desc: 'Rose Hodi is a popular Egyptian granite featuring a beautiful pinkish-red background with distinctive black and grey mineral deposits. Extremely durable and resistant to scratches and heat, making it perfect for kitchen countertops and outdoor paving.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Flamed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.hodi.desc'),
+                            specs: t('products.hodi.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Rose Nasr -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-img" style="background-image: url('images/rose-nasr.jpg');"></div>
                     <div class="product-card-body">
-                        <h3>Rose Nasr</h3>
-                        <p>Classic red granite with uniform pattern, ideal for large projects.</p>
+                        <h3 x-text="t('products.nasr.title')"></h3>
+                        <p x-text="t('products.nasr.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Rose Nasr Granite',
+                            name: t('products.nasr.title'),
                             image: 'images/rose-nasr.jpg',
-                            desc: 'Rose Nasr is a premium red granite from Egypt known for its consistent color and fine grain structure. Its deep red tones with black and white speckles create a rich, luxurious appearance. Excellent for monuments, cladding, and flooring.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Bush Hammered', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.nasr.desc'),
+                            specs: t('products.nasr.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Halayeb -->
@@ -758,13 +511,14 @@
                     <div class="product-card-img" style="background-image: url('images/halayeb.jpg');"></div>
                     <div class="product-card-body">
                         <h3>Halayeb</h3>
-                        <p>Unique black granite with golden flecks, truly exceptional.</p>
+                        <p x-text="t('products.halayeb.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Halayeb Granite',
+                            name: 'Halayeb',
                             image: 'images/halayeb.jpg',
-                            desc: 'Halayeb is an exclusive Egyptian granite with a deep black base adorned with golden and copper-colored crystals. Its luxurious appearance and extreme hardness make it perfect for high-end applications, luxury countertops, and statement pieces.',
-                            specs: ['Origin: Halayeb, Egypt', 'Finish: Polished/Leather', 'Thickness: 2-3 cm', 'Application: Interior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.halayeb.desc'),
+                            specs: t('products.halayeb.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Gandola -->
@@ -772,13 +526,14 @@
                     <div class="product-card-img" style="background-image: url('images/gandola.jpg');"></div>
                     <div class="product-card-body">
                         <h3>Gandola</h3>
-                        <p>Elegant grey granite with flowing patterns, versatile and modern.</p>
+                        <p x-text="t('products.gandola.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Gandola Granite',
+                            name: 'Gandola',
                             image: 'images/gandola.jpg',
-                            desc: 'Gandola is a sophisticated grey granite featuring subtle movement and consistent coloring. Its neutral tone makes it incredibly versatile, complementing any design scheme. Perfect for contemporary kitchens, bathrooms, and commercial spaces.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.gandola.desc'),
+                            specs: t('products.gandola.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- Grey Company -->
@@ -786,13 +541,14 @@
                     <div class="product-card-img" style="background-image: url('images/grey-company.jpg');"></div>
                     <div class="product-card-body">
                         <h3>Grey Company</h3>
-                        <p>Commercial-grade grey granite, perfect for large-scale projects.</p>
+                        <p x-text="t('products.grey.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'Grey Company Granite',
+                            name: 'Grey Company',
                             image: 'images/grey-company.jpg',
-                            desc: 'Grey Company is a reliable and cost-effective grey granite widely used in commercial and residential projects. Its uniform appearance and excellent durability make it ideal for flooring, wall cladding, stairs, and outdoor paving in high-traffic areas.',
-                            specs: ['Origin: Egypt', 'Finish: Polished/Flamed/Sandblasted', 'Thickness: 2-4 cm', 'Application: Interior & Exterior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.grey.desc'),
+                            specs: t('products.grey.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
                 <!-- New Halayeb -->
@@ -800,98 +556,122 @@
                     <div class="product-card-img" style="background-image: url('images/new-halayeb.jpg');"></div>
                     <div class="product-card-body">
                         <h3>New Halayeb</h3>
-                        <p>Enhanced version with more prominent golden crystals.</p>
+                        <p x-text="t('products.new_halayeb.short')"></p>
                         <button @click="modalOpen = true; modalContent = {
-                            name: 'New Halayeb Granite',
+                            name: 'New Halayeb',
                             image: 'images/new-halayeb.jpg',
-                            desc: 'New Halayeb is a premium variant of the classic Halayeb granite, featuring a darker black base with more abundant and larger golden crystal formations. This stone offers unmatched luxury and is perfect for creating dramatic focal points in high-end designs.',
-                            specs: ['Origin: Halayeb, Egypt', 'Finish: Polished', 'Thickness: 2-3 cm', 'Application: Interior']
-                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;">View Details</button>
+                            isTombstone: false,
+                            desc: t('products.new_halayeb.desc'),
+                            specs: t('products.new_halayeb.specs')
+                        }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tombstone Section -->
+    <section class="product-items-section" id="tombstone" style="background: var(--slate-black);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <span x-text="t('collection')"></span>
+                <h2 x-text="t('nav.tombstone')"></h2>
+            </div>
+            <div class="products-items-grid">
+                <!-- Dynamically looping 14 Tombstones -->
+                <template x-for="i in 14">
+                    <div class="product-card" data-aos="fade-up">
+                        <div class="product-card-img" :style="'background-image: url(\'images/tombstone' + i + '.jpg\');'"></div>
+                        <div class="product-card-body">
+                            <h3 x-text="t('tombstone_title') + ' ' + i"></h3>
+                            <p x-text="t('tombstone_p')"></p>
+                            <!-- فتح النافذة المحدثة بالصورة كاملة الأبعاد + كارت المعلومات -->
+                            <button @click="modalOpen = true; modalContent = {
+                                name: t('tombstone_title') + ' ' + i,
+                                image: 'images/tombstone' + i + '.jpg',
+                                isTombstone: true,
+                                desc: t('tombstone_modal_desc'),
+                                specs: [t('tombstone_spec1'), t('tombstone_spec2'), t('tombstone_spec3'), t('tombstone_spec4')]
+                            }" class="btn-gold" style="padding: 8px 18px; font-size: 0.75rem;" x-text="t('view_details')"></button>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </section>
 
     <!-- Sizes Section -->
-    <section class="product-items-section" id="sizes" style="background: var(--slate-black);">
+    <section class="product-items-section" id="sizes" style="background: var(--rich-black);">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <span>Available Cuts</span>
-                <h2>Custom <span class="gold-text">Sizes</span></h2>
+                <span x-text="t('sizes.span')"></span>
+                <h2 x-html="t('sizes.h2')"></h2>
             </div>
-            <!-- تم استخدام الكلاس الجديد sizes-items-grid لضمان ظهور العناصر بجانب بعضها على الكمبيوتر وتحت بعضها على الموبايل -->
             <div class="sizes-items-grid">
-                <!-- Slabs -->
                 <div class="product-card" data-aos="fade-up">
                     <div class="product-card-body" style="text-align: center;">
                         <i class="fas fa-layer-group gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Slabs</h3>
-                        <p>Large format slabs for countertops, islands, and wall cladding. Standard size: 240x120 cm</p>
+                        <h3 x-text="t('sizes.slabs.title')"></h3>
+                        <p x-text="t('sizes.slabs.p')"></p>
                     </div>
                 </div>
-                <!-- Stair Treads -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="product-card-body" style="text-align: center;">
                         <i class="fas fa-stairs gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Stair Treads</h3>
-                        <p>Custom cut stair treads with anti-slip finishing options. All standard and custom sizes available</p>
+                        <h3 x-text="t('sizes.stairs.title')"></h3>
+                        <p x-text="t('sizes.stairs.p')"></p>
                     </div>
                 </div>
-                <!-- Floor Tiles -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-card-body" style="text-align: center;">
                         <i class="fas fa-th gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Floor Tiles</h3>
-                        <p>Precision cut tiles for flooring. Common sizes: 30x30, 40x40, 60x60, 60x120 cm</p>
+                        <h3 x-text="t('sizes.tiles.title')"></h3>
+                        <p x-text="t('sizes.tiles.p')"></p>
                     </div>
                 </div>
-                <!-- Custom Sizes -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-card-body" style="text-align: center;">
                         <i class="fas fa-ruler-combined gold-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Custom Sizes</h3>
-                        <p>Any size and shape to fit your project needs. CNC cutting and waterjet available</p>
+                        <h3 x-text="t('sizes.custom.title')"></h3>
+                        <p x-text="t('sizes.custom.p')"></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services & Stats combined -->
+    <!-- Services & Stats -->
     <section class="services-stats-section" id="services">
         <div class="container split-grid">
-            <!-- Left Side Services -->
             <div class="services-area" data-aos="fade-right">
-                <h2>Our Services</h2>
+                <h2 x-text="t('nav.services')"></h2>
                 <div class="services-list-grid">
-                    <div class="service-item"><i class="fa-solid fa-cube"></i> Block Supply</div>
-                    <div class="service-item"><i class="fa-solid fa-layer-group"></i> Slab Supply</div>
-                    <div class="service-item"><i class="fa-solid fa-scissors"></i> Cut to Size</div>
-                    <div class="service-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Polishing</div>
-                    <div class="service-item"><i class="fa-solid fa-compass-drafting"></i> Custom Finishes</div>
-                    <div class="service-item"><i class="fa-solid fa-boxes-packing"></i> Packing & Loading</div>
+                    <div class="service-item"><i class="fa-solid fa-cube"></i> <span x-text="t('services.s1')"></span></div>
+                    <div class="service-item"><i class="fa-solid fa-layer-group"></i> <span x-text="t('services.s2')"></span></div>
+                    <div class="service-item"><i class="fa-solid fa-scissors"></i> <span x-text="t('services.s3')"></span></div>
+                    <div class="service-item"><i class="fa-solid fa-wand-magic-sparkles"></i> <span x-text="t('services.s4')"></span></div>
+                    <div class="service-item"><i class="fa-solid fa-compass-drafting"></i> <span x-text="t('services.s5')"></span></div>
+                    <div class="service-item"><i class="fa-solid fa-boxes-packing"></i> <span x-text="t('services.s6')"></span></div>
                 </div>
             </div>
-            <!-- Right Side Counters -->
             <div class="stats-area" data-aos="fade-left">
-                <h2>Our Achievements</h2>
+                <h2 x-text="t('achievements')"></h2>
                 <div class="stats-grid">
                     <div class="stat-box">
                         <div class="stat-number">5+</div>
-                        <div class="stat-label">Years of Experience</div>
+                        <div class="stat-label" x-text="t('stats.st1')"></div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-number">200+</div>
-                        <div class="stat-label">Happy Clients</div>
+                        <div class="stat-label" x-text="t('stats.st2')"></div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-number">50+</div>
-                        <div class="stat-label">Countries Exported</div>
+                        <div class="stat-label" x-text="t('stats.st3')"></div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-number">100%</div>
-                        <div class="stat-label">Quality Guaranteed</div>
+                        <div class="stat-label" x-text="t('stats.st4')"></div>
                     </div>
                 </div>
             </div>
@@ -901,7 +681,7 @@
     <!-- Gallery Section -->
     <section class="projects-section" id="projects">
         <div class="container">
-            <h2>Our Projects</h2>
+            <h2 x-text="t('nav.projects')"></h2>
             <div class="projects-gallery" data-aos="fade-up">
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=400&q=80" alt="Proj1"></div>
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=400&q=80" alt="Proj2"></div>
@@ -919,59 +699,74 @@
                 <span class="footer-logo">
                     <img src="images/logo.png" alt="Tulip Stone Logo"> TULIP STONE
                 </span>
-                <p>Leading company in Marble & Granite trade, specialized in local supply and international export.</p>
+                <p x-text="t('footer.about')"></p>
                 <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100088212042424" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/tulipstonemarbles?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/tulip-stone-21a4a1419" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.tiktok.com/@tulipstone.marble?_r=1&_t=ZS-97THh8AqLMj" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-links">
-                <h4>Quick Links</h4>
+                <h4 x-text="t('footer.links_title')"></h4>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#marble">Marble</a></li>
-                    <li><a href="#granite">Granite</a></li>
+                    <li><a href="#home" x-text="t('nav.home')"></a></li>
+                    <li><a href="#about" x-text="t('nav.about')"></a></li>
+                    <li><a href="#marble" x-text="t('nav.marble')"></a></li>
+                    <li><a href="#granite" x-text="t('nav.granite')"></a></li>
+                    <li><a href="#tombstone" x-text="t('nav.tombstone')"></a></li>
                 </ul>
             </div>
             <div class="footer-contact">
-                <h4>Contact Us</h4>
+                <h4 x-text="t('nav.contact')"></h4>
                 <p><i class="fa-solid fa-envelope"></i> info@tulipstone.com</p>
                 <p><i class="fa-solid fa-phone"></i> +20 100 009 6945</p>
-                <p><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</p>
+                <p>
+                    <a href="https://www.bing.com/maps/search?v=2&pc=FACEBK&mid=8100&mkt=en-US&fbclid=IwY2xjawSoeaFleHRuA2FlbQIxMABicmlkETFIMW1raWlhS0RRM0EwOEJEc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvQqOzbOYvu__FHvmmamC11kh4lVY73DIsF069izHjOCq-PFCqxTV7awALoT_aem_qyE_Ar0KKa5Ry3q5Pa-Tqg&FORM=FBKPL1&q=%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9+%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9+%D8%A8%D8%Bبعرب+%D8%A7%D8%A8%D9%88%D8%B3%D8%A7%D8%B9%D8%AF+%D8%AD%D9%84%D9%88%D8%A7%D9%86+%D8%A8%D8%AC%D9%8ـ%D9%88%D8%A7%D8%B1+%D9%85%D8%AD%D8%B7%D8%A9+%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D9%8A%D8%A1%2C+Helwan%2C+Egypt&cp=29.765915%7E31.346334&lvl=16&style=r" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i> <span x-text="t('footer.address')"></span>
+                    </a>
+                </p>
             </div>
             <div class="footer-grid-form">
-                <h4>Get in Touch</h4>
-                <p>We are ready to provide the best solutions for your projects.</p>
-                <button class="btn-gold" style="width: 100%;">Send Message</button>
+                <h4 x-text="t('footer.get_in_touch')"></h4>
+                <p x-text="t('footer.ready')"></p>
+                <a href="mailto:customerservice@tulip-stone.com" class="btn-gold" style="width: 100%;" x-text="t('footer.send_msg')"></a>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2026 Tulip Stone. All Rights Reserved.
+            &copy; 2026 Tulip Stone. <span x-text="t('footer.rights')"></span>
         </div>
     </footer>
 
-    <!-- Product Modal -->
+    <!-- DYNAMIC UNIFIED MODAL (Marble, Granite, and Tombstone) -->
     <div x-show="modalOpen" x-cloak>
         <div class="modal-backdrop" @click="modalOpen = false"></div>
         <div class="modal-content" @click.away="modalOpen = false">
-            <button @click="modalOpen = false" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--gray-text); font-size: 1.5rem; cursor: pointer;">
+            <button @click="modalOpen = false" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--gray-text); font-size: 1.5rem; cursor: pointer; z-index: 10;">
                 <i class="fas fa-times"></i>
             </button>
-            <img :src="modalContent.image" :alt="modalContent.name" style="width: 100%; height: 250px; object-fit: cover; margin-bottom: 20px;">
+            
+            <!-- لو كان الحساب لـ Tombstone، هيعرض الصورة بأبعادها الطبيعية بدون قص -->
+            <div class="modal-img-container" :class="modalContent.isTombstone ? 'tombstone-mode' : 'standard-mode'">
+                <img :src="modalContent.image" :alt="modalContent.name">
+            </div>
+
+            <!-- كارت التفاصيل الفاخر بالأسفل -->
             <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-gold); margin-bottom: 15px;" x-text="modalContent.name"></h3>
-            <p style="color: var(--gray-text); line-height: 1.7; margin-bottom: 25px;" x-text="modalContent.desc"></p>
+            <p style="color: var(--gray-text); line-height: 1.7; margin-bottom: 25px; font-size: 0.95rem;" x-text="modalContent.desc"></p>
+            
             <div style="border-top: 1px solid rgba(197, 168, 128, 0.2); padding-top: 20px;">
-                <h4 style="color: var(--primary-gold); margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Specifications:</h4>
-                <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <h4 style="color: var(--primary-gold); margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;" x-text="t('specs')"></h4>
+                <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <template x-for="spec in modalContent.specs">
-                        <li style="color: var(--gray-text); font-size: 0.85rem;"><i class="fas fa-check gold-text" style="margin-right: 8px;"></i><span x-text="spec"></span></li>
+                        <li style="color: var(--gray-text); font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-check gold-text"></i>
+                            <span x-text="spec"></span>
+                        </li>
                     </template>
                 </ul>
             </div>
-            <button @click="modalOpen = false" class="btn-gold" style="width: 100%; margin-top: 25px;">Close</button>
+            <button @click="modalOpen = false" class="btn-gold" style="width: 100%; margin-top: 25px;" x-text="t('close')"></button>
         </div>
     </div>
 
@@ -979,48 +774,126 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('multiLang', () => ({
+                lang: 'en',
+                translations: {
+                    en: {
+                        nav: { home: 'Home', about: 'About Us', marble: 'Marble', granite: 'Granite', tombstone: 'Tombstone', sizes: 'Sizes', services: 'Services', projects: 'Projects', contact: 'Contact', quote: 'Get A Quote' },
+                        hero: {
+                            slide1: { span: 'Leading Company In', h1: 'Marble & Granite <br><span class="gold-text">Trade</span>', p: 'Specialized in local supply and international export with absolute precision and premium Egyptian quality standards.', btn1: 'Discover Marble', btn2: 'Contact Us' },
+                            slide2: { span: 'Luxury Spaces', h1: 'Timeless Elegance <br><span class="gold-text">& Design</span>', p: 'We provide structural materials that combine aesthetic nature with durability designed to last lifetimes.', btn1: 'Our Granite', btn2: 'View Gallery' }
+                        },
+                        features: {
+                            f1: { title: 'Premium Quality', desc: 'We provide the highest quality marble & granite selected carefully.' },
+                            f2: { title: 'Global Export', desc: 'Exporting our products worldwide with reliability and trust.' },
+                            f3: { title: 'Trust & Reliability', desc: 'We build lasting relationships through honesty and quality.' },
+                            f4: { title: 'On Time Delivery', desc: 'Committed to delivering your orders on time every time.' }
+                        },
+                        about: { span: 'About Us', h2: 'Tulip Stone', p: 'Tulip Stone is a leading company in marble and granite trade, providing high-quality natural stones sourced from the finest quarries. We specialize in local supply and international export, delivering excellence to every project.', btn: 'Read More' },
+                        collection: 'Our Collection',
+                        view_details: 'View Details',
+                        specs: 'Specifications:',
+                        close: 'Close',
+                        tombstone_title: 'Tombstone Design',
+                        tombstone_p: 'Premium quality natural stone tombstone expertly crafted to endure lifetimes.',
+                        tombstone_modal_desc: 'An elegantly finished premium tombstone piece custom tailored from genuine Egyptian natural stone. Meticulously cut and polished to emphasize natural structural grains while boasting extreme resistance against environmental factors.',
+                        tombstone_spec1: 'Material: Natural Granite / Marble',
+                        tombstone_spec2: 'Proportion: Original Aspect Ratio',
+                        tombstone_spec3: 'Craftsmanship: Premium Hand/CNC Cut',
+                        tombstone_spec4: 'Durability: High Weather Resistance',
+                        achievements: 'Our Achievements',
+                        products: {
+                            trista: { title: 'Trista Marble', short: 'Elegant beige marble with subtle golden veins, perfect for luxurious interiors.', desc: 'Trista is a premium Egyptian marble characterized by its warm beige base color with delicate golden and light brown veining. Ideal for flooring, wall cladding, countertops, and decorative elements.', specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior'] },
+                            sunny: { title: 'Sunny Minya', short: 'Bright cream marble with warm undertones, bringing light to any space.', desc: 'Sunny Minya is a highly sought-after Egyptian marble featuring a creamy white to light beige background with minimal veining. Its bright appearance makes it perfect for large-scale projects.', specs: ['Origin: Minya, Egypt', 'Finish: Polished/Brushed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior'] },
+                            silvia: { title: 'Silvia Marble', short: 'Sophisticated grey marble with dramatic white veining patterns.', desc: 'Silvia Marble is a distinguished Egyptian stone with a light to medium grey base and striking white veins running throughout. Its contemporary look makes it ideal for modern interiors.', specs: ['Origin: Egypt', 'Finish: Polished/Leather', 'Thickness: 2-3 cm', 'Application: Interior'] },
+                            hodi: { title: 'Rose Hodi', short: 'Pinkish-red granite with black speckles, adding warmth and character.', desc: 'Rose Hodi is a popular Egyptian granite featuring a beautiful pinkish-red background with distinctive black and grey mineral deposits. Extremely durable.', specs: ['Origin: Egypt', 'Finish: Polished/Flamed', 'Thickness: 2-3 cm', 'Application: Interior & Exterior'] },
+                            nasr: { title: 'Rose Nasr', short: 'Classic red granite with uniform pattern, ideal for large projects.', desc: 'Rose Nasr is a premium red granite from Egypt known for its consistent color and fine grain structure. Excellent for monuments, cladding, and flooring.', specs: ['Origin: Egypt', 'Finish: Polished/Bush Hammered', 'Thickness: 2-4 cm', 'Application: Interior & Exterior'] },
+                            halayeb: { short: 'Unique black granite with golden flecks, truly exceptional.', desc: 'Halayeb is an exclusive Egyptian granite with a deep black base adorned with golden crystals.', specs: ['Origin: Halayeb, Egypt', 'Finish: Polished/Leather', 'Thickness: 2-3 cm', 'Application: Heavy Duty Flooring'] },
+                            gandola: { short: 'Elegant grey granite with flowing patterns, versatile and modern.', desc: 'Gandola is a sophisticated grey granite featuring subtle movement. Perfect for contemporary kitchens.', specs: ['Origin: Egypt', 'Finish: Polished/Honed', 'Thickness: 2-3 cm', 'Application: Counters & Stairs'] },
+                            grey: { short: 'Commercial-grade grey granite, perfect for large-scale projects.', desc: 'Grey Company is a reliable and cost-effective grey granite widely used in commercial areas.', specs: ['Origin: Egypt', 'Finish: Polished/Flamed', 'Thickness: 2-4 cm', 'Application: External Pathways'] },
+                            new_halayeb: { short: 'Enhanced version with more prominent golden crystals.', desc: 'New Halayeb features a darker black base with more abundant and larger golden crystal formations.', specs: ['Origin: Halayeb, Egypt', 'Finish: Polished', 'Thickness: 2-3 cm', 'Application: Premium Cladding'] }
+                        },
+                        sizes: { span: 'Available Cuts', h2: 'Custom <span class="gold-text">Sizes</span>', slabs: { title: 'Slabs', p: 'Large format slabs for countertops, islands, and wall cladding. Standard size: 240x120 cm' }, stairs: { title: 'Stair Treads', p: 'Custom cut stair treads with anti-slip finishing options. All standard and custom sizes available' }, tiles: { title: 'Floor Tiles', p: 'Precision cut tiles for flooring. Common sizes: 30x30, 40x40, 60x60, 60x120 cm' }, custom: { title: 'Custom Sizes', p: 'Any size and shape to fit your project needs. CNC cutting and waterjet available' } },
+                        services: { s1: 'Block Supply', s2: 'Slab Supply', s3: 'Cut to Size', s4: 'Polishing', s5: 'Custom Finishes', s6: 'Packing & Loading' },
+                        stats: { st1: 'Years of Experience', st2: 'Happy Clients', st3: 'Countries Exported', st4: 'Quality Guaranteed' },
+                        footer: { about: 'Leading company in Marble & Granite trade, specialized in local supply and international export.', links_title: 'Quick Links', address: 'Industrial Area, Arab Abu Saed, Helwan, Next to the Power Station, Helwan, Egypt', get_in_touch: 'Get in Touch', ready: 'We are ready to provide the best solutions for your projects.', send_msg: 'Send Email', rights: 'All Rights Reserved.' }
+                    },
+                    ar: {
+                        nav: { home: 'الرئيسية', about: 'من نحن', marble: 'الرخام', granite: 'الجرانيت', tombstone: 'شواهد القبور', sizes: 'المقاسات', services: 'خدماتنا', projects: 'مشاريعنا', contact: 'اتصل بنا', quote: 'احصل على عرض سعر' },
+                        hero: {
+                            slide1: { span: 'الشركة الرائدة في', h1: 'تجارة الرخام <br>والجرانيت <span class="gold-text">المميز</span>', p: 'متخصصون في التوريد المحلي والتصدير الدولي بدقة متناهية ومعايير جودة مصرية ممتازة.', btn1: 'اكتشف الرخام', btn2: 'اتصل بنا' },
+                            slide2: { span: 'مساحات فاخرة', h1: 'أناقة خالدة <br><span class="gold-text">وتصميم فريد</span>', p: 'نوفر المواد الإنشائية الطبيعية التي تجمع بين جمال الطبيعة والمتانة المصممة لتدوم مدى الحياة.', btn1: 'منتجات الجرانيت', btn2: 'عرض المعرض' }
+                        },
+                        features: {
+                            f1: { title: 'جودة ممتازة', desc: 'نحن نقدم أعلى جودة من الرخام والجرانيت المختار بعناية فائقة.' },
+                            f2: { title: 'تصدير عالمي', desc: 'تصدير منتجاتنا لجميع أنحاء العالم بكل موثوقية وأمان.' },
+                            f3: { title: 'الثقة والأمان', desc: 'نبني علاقات دائمة مع عملائنا من خلال الصدق والالتزام بالجودة.' },
+                            f4: { title: 'التسليم في الوقت', desc: 'ملتزمون بتسليم جميع طلباتكم ومشاريعكم في الوقت المحدد دائماً.' }
+                        },
+                        about: { span: 'من نحن', h2: 'توليب ستون', p: 'توليب ستون هي شركة رائدة في مجال تجارة الرخام والجرانيت، حيث توفر أحجارًا طبيعية عالية الجودة يتم استخراجها من أفضل المحاجر. نحن متخصصون في التوريد المحلي والتصدير الدولي لنلبي تطلعات كافة المشاريع.', btn: 'اقرأ المزيد' },
+                        collection: 'مجموعتنا المتميزة',
+                        view_details: 'عرض التفاصيل',
+                        specs: 'المواصفات الفنية:',
+                        close: 'إغلاق',
+                        tombstone_title: 'شاهد قبر موديل',
+                        tombstone_p: 'شواهد قبور من الأحجار الطبيعية بجودة ممتازة تم تصنيعها باحترافية لتدوم طويلاً.',
+                        tombstone_modal_desc: 'قطعة شاهد قبر فاخرة ومصقولة بعناية فائقة من الأحجار الطبيعية المصرية الأصيلة. تم قصها وتجهيزها لإبراز فخامة عروق الحجر الطبيعي مع مقاومة قصوى لكافة العوامل الجوية الخارجية وعوامل الزمن.',
+                        tombstone_spec1: 'الخامة: جرانيت / رخام طبيعي فاخر',
+                        tombstone_spec2: 'الأبعاد: الحجم والأبعاد الأصلية للصورة',
+                        tombstone_spec3: 'نوع القص: جلي كمبيوتر / CNC متطور',
+                        tombstone_spec4: 'المقاومة: تحمل كامل للرطوبة والشمس وفروق الحرارة',
+                        achievements: 'إنجازاتنا',
+                        products: {
+                            trista: { title: 'رخام تريستا', short: 'رخام بيج أنيق وعروق ذهبية خفيفة، مثالي للمساحات الداخلية الفاخرة.', desc: 'تريستا هو رخام مصري ممتاز يتميز بلونه البيج الدافئ وعروقه الذهبية والبنية الفاتحة الدقيقة. مثالي للأرضيات وتكسية الحوائط والمطابخ.', specs: ['المنشأ: مصر', 'التشطيب: لامع / مطفي', 'السماكة: 2-3 سم', 'الاستخدام: داخلي وخارجي'] },
+                            sunny: { title: 'صني المنيا', short: 'رخام كريمي ساطع بلمسات دافئة، يضفي إضاءة واتساع على المساحات.', desc: 'صني المنيا هو رخام مصري مرغوب بشدة يتميز بخلفية كريمية بيضاء إلى بيج فاتح مع عروق طفيفة جداً. ممتاز للمشاريع الكبرى.', specs: ['المنشأ: المنيا، مصر', 'التشطيب: جلي / تلميع', 'السماكة: 2-3 سم', 'الاستخدام: داخلي وخارجي'] },
+                            silvia: { title: 'رخام سيلفيا', short: 'رخام رمادي متطور بنقوش وعروق بيضاء دراماتيكية رائعة.', desc: 'رخام سيلفيا هو حجر مصري مميز بقاعدة رمادية فاتحة إلى متوسطة وعروق بيضاء لافتة للنظر تتماشى مع التصاميم العصرية الحديثة.', specs: ['المنشأ: مصر', 'التشطيب: لامع / معتق', 'السماكة: 2-3 سم', 'الاستخدام: داخلي'] },
+                            hodi: { title: 'روزا هودي', short: 'جرانيت وردي مائل للاحمرار مع حبيبات سوداء تضفي طابعاً دافئاً.', desc: 'روزا هودي هو جرانيت مصري شهير يتميز بخلفية وردية حمراء جميلة مع ترسبات معدنية سوداء ورمادية مميزة. متين للغاية ومقاوم للحرارة.', specs: ['المنشأ: مصر', 'التشطيب: جلي / حرق', 'السماكة: 2-3 سم', 'الاستخدام: داخلي وخارجي'] },
+                            nasr: { title: 'روزا النصر', short: 'جرانيت أحمر كلاسيكي بنمط منتظم ومتناسق، مثالي للمشاريع الكبيرة.', desc: 'روزا النصر هو جرانيت أحمر فاخر من مصر معروف بثبات لونه وبنيته الحبيبية الدقيقة، ممتاز للواجهات والمنشآت والأرضيات الفخمة.', specs: ['المنشأ: مصر', 'التشطيب: لامع / بوش هامر', 'السماكة: 2-4 سم', 'الاستخدام: داخلي وخارجي'] },
+                            halayeb: { short: 'جرانيت أسود فريد من نوعه مع بريق بلوري ذهبي استثنائي.', desc: 'حلايب هو جرانيت مصري حصري يتميز بقاعدة سوداء داكنة مزينة ببلورات ذهبية ونحاسية فخمة وقوة تحمل فائقة.', specs: ['المنشأ: حلايب، مصر', 'التشطيب: لامع / ليدر', 'السماكة: 2-3 سم', 'الاستخدام: أرضيات الخدمة الشاقة'] },
+                            gandola: { short: 'جرانيت رمادي أنيق بأنماط متموجة، متعدد الاستخدامات وعصري.', desc: 'غندولا هو جرانيت رمادي راقٍ يتميز بحركة تموجات دقيقة وثبات اللون، يتناسب تماماً مع المطابخ المعاصرة والحمامات.', specs: ['المنشأ: مصر', 'التشطيب: لامع / مطفي', 'السماكة: 2-3 سم', 'الاستخدام: كاونترات وسلالم'] },
+                            grey: { short: 'جرانيت رمادي تجاري معتمد، خيار مثالي للمشاريع واسعة النطاق.', desc: 'جرانيت الشركة الرمادي هو خيار اقتصادي يعتمد عليه ويستخدم على نطاق واسع في المشاريع التجارية والسكنية الكبرى والأرصفة.', specs: ['المنشأ: مصر', 'التشطيب: لامع / محروق', 'السماكة: 2-4 سم', 'الاستخدام: ممرات خارجية وواجهات'] },
+                            new_halayeb: { short: 'نسخة مطورة من جرانيت حلايب ببلورات ذهبية أكثر وضوحاً وكثافة.', desc: 'نيو حلايب هو نوع فاخر ومطور من الجرانيت الكلاسيكي، يتميز بقاعدة سوداء أكثر قتامة وتشكيلات بلورية ذهبية أكبر.', specs: ['المنشأ: حلايب، مصر', 'التشطيب: لامع بالكامل', 'السماكة: 2-3 سم', 'الاستخدام: تجليد واجهات فاخرة'] }
+                        },
+                        sizes: { span: 'القصات المتاحة', h2: 'المقاسات <span class="gold-text">حسب الطلب</span>', slabs: { title: 'طاولات / الواح كبيرة', p: 'ألواح بمقاسات كبيرة لأسطح المطابخ، الجزر، وتكسية الجدران. المقاس القياسي: 240×120 سم' }, stairs: { title: 'درج السلم', p: 'درج مقصوص خصيصاً مع خيارات معالجة مضادة للانزلاق. متوفر بكافة المقاسات القياسية والخاصة.' }, tiles: { title: 'ترابيع / بلاط الأرضيات', p: 'بلاط مقصوص بدقة متناهية للأرضيات. المقاسات الشائعة: 30×30، 40×40، 60×60، 60×120 سم' }, custom: { title: 'مقاسات خاصة', p: 'أي مقاس وشكل يخدم متطلبات مشروعك الفريدة مع توفر قص CNC والواترجيت.' } },
+                        services: { s1: 'توريد بلوكات', s2: 'توريد طاولات', s3: 'قص وترابيع', s4: 'جلي وتلميع', s5: 'تشطيبات خاصة', s6: 'التعبئة والتحميل' },
+                        stats: { st1: 'سنوات خبرة', st2: 'عميل سعيد', st3: 'دولة نصدر إليها', st4: 'جودة مضمونة 100%' },
+                        footer: { about: 'الشركة الرائدة في مجال تجارة الرخام والجرانيت، متخصصون في التوريد المحلي والتصدير الدولي لكافة دول العالم.', links_title: 'روابط سريعة', address: 'المنطقة الصناعية بعرب ابوساعد حلوان بجوار محطة الكهرباء، حلوان، مصر', get_in_touch: 'تواصل معنا', ready: 'نحن على أتم استعداد لتقديم أفضل الحلول والخدمات لمشاريعكم.', send_msg: 'إرسال بريد إلكتروني', rights: 'جميع الحقوق محفوظة.' }
+                    }
+                },
+                t(key) {
+                    return key.split('.').reduce((o, i) => o[i], this.translations[this.lang]);
+                },
+                toggleLang() {
+                    this.lang = this.lang === 'en' ? 'ar' : 'en';
+                }
+            }));
         });
+
+        // Initialize Animations
+        AOS.init({ duration: 1000, once: true });
 
         // Initialize Premium Slider
         var swiper = new Swiper(".mySwiper", {
             loop: true,
             speed: 1000,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
         });
 
-        // Active nav link on scroll
+        // Active link tracking
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
-
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
+                if (pageYOffset >= sectionTop - 100) { current = section.getAttribute('id'); }
             });
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); }
             });
         });
     </script>
